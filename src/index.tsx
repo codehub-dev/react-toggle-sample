@@ -1,8 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import styled from "styled-components";
 
-const Toggle = () => {
-  const [is_open, set_open] = React.useState(true);
+const Overlay = styled.div`
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.2);
+`;
+const DropMenu = styled.div`
+  z-index: 10000;
+  display: block;
+  position: absolute;
+`;
+
+interface Props {
+  children: React.ReactNode;
+}
+
+const Toggle: React.FunctionComponent<Props> = ({ children }) => {
+  const [is_open, set_open] = React.useState(false);
 
   const toggle_button = () => {
     set_open(!is_open);
@@ -10,19 +30,36 @@ const Toggle = () => {
 
   return (
     <>
-      <button onClick={toggle_button}>inButton</button>
-      {is_open && <div>aaa</div>}
+      <button onClick={toggle_button}>inSideButton</button>
+      {is_open && (
+        <>
+          <Overlay onClick={toggle_button} />
+          <DropMenu className="open">{children}</DropMenu>
+        </>
+      )}
     </>
   );
 };
+
+const List = styled.div`
+  z-index: 10000;
+  background-color: #fff;
+`;
 
 const App = () => {
   return (
     <>
       <div>
-        <button>outBtton</button>
+        <button>outSideBtton</button>
       </div>
-      <Toggle />
+      <Toggle>
+        <List>
+          <ul>
+            <li>aaa</li>
+            <li>iii</li>
+          </ul>
+        </List>
+      </Toggle>
     </>
   );
 };
