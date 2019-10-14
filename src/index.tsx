@@ -1,28 +1,46 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import styled from "styled-components";
+import { Toggle } from "./Toggle";
+import { Toggle2 } from "./Toggle2";
 
-const Toggle = () => {
-  const [is_open, set_open] = React.useState(true);
+const List = styled.div`
+  background-color: #fff;
+`;
 
-  const toggle_button = () => {
-    set_open(!is_open);
-  };
+const DesignButton = styled.button`
+  background-color: blue;
+  color: #fff;
+`;
 
-  return (
-    <>
-      <button onClick={toggle_button}>inButton</button>
-      {is_open && <div>aaa</div>}
-    </>
-  );
-};
+const ToggleButton = <DesignButton>outSideBtton</DesignButton>;
 
 const App = () => {
   return (
     <>
+      <p>sample1</p>
+      <p>（理想はoutSideButtonで切替できる）</p>
       <div>
-        <button>outBtton</button>
+        <button>outSideBtton</button>
       </div>
-      <Toggle />
+      <Toggle>
+        <List>
+          <ul>
+            <li>aaa</li>
+            <li>iii</li>
+          </ul>
+        </List>
+      </Toggle>
+
+      <p>sample2</p>
+      <Toggle2 toggle_element={ToggleButton}>
+        <List>
+          <ul>
+            <li>aaa</li>
+            <li>iii</li>
+          </ul>
+        </List>
+      </Toggle2>
     </>
   );
 };
