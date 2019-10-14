@@ -15,11 +15,6 @@ const DesignButton = styled.button`
 
 const ToggleButton = <DesignButton>outSideBtton</DesignButton>;
 
-const List = styled.div`
-  z-index: 10000;
-  background-color: #fff;
-`;
-
 const App = () => {
   return (
     <>
