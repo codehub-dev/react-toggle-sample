@@ -1,45 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import { Toggle } from "./Toggle";
+import { Toggle2 } from "./Toggle2";
 
-const Overlay = styled.div`
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.2);
-`;
-const DropMenu = styled.div`
-  z-index: 10000;
-  display: block;
-  position: absolute;
+const List = styled.div`
+  background-color: #fff;
 `;
 
-interface Props {
-  children: React.ReactNode;
-}
+const DesignButton = styled.button`
+  background-color: blue;
+  color: #fff;
+`;
 
-const Toggle: React.FunctionComponent<Props> = ({ children }) => {
-  const [is_open, set_open] = React.useState(false);
-
-  const toggle_button = () => {
-    set_open(!is_open);
-  };
-
-  return (
-    <>
-      <button onClick={toggle_button}>inSideButton</button>
-      {is_open && (
-        <>
-          <Overlay onClick={toggle_button} />
-          <DropMenu className="open">{children}</DropMenu>
-        </>
-      )}
-    </>
-  );
-};
+const ToggleButton = <DesignButton>outSideBtton</DesignButton>;
 
 const List = styled.div`
   z-index: 10000;
@@ -49,6 +23,8 @@ const List = styled.div`
 const App = () => {
   return (
     <>
+      <p>sample1</p>
+      <p>（理想はoutSideButtonで切替できる）</p>
       <div>
         <button>outSideBtton</button>
       </div>
@@ -60,6 +36,15 @@ const App = () => {
           </ul>
         </List>
       </Toggle>
+      <p>sample2</p>
+      <Toggle2 toggle_element={ToggleButton}>
+        <List>
+          <ul>
+            <li>aaa</li>
+            <li>iii</li>
+          </ul>
+        </List>
+      </Toggle2>
     </>
   );
 };
