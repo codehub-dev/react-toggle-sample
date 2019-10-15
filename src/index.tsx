@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 import { Toggle } from "./Toggle";
 import { Toggle2 } from "./Toggle2";
+import { Toggle3 } from "./Toggle3";
 
 const List = styled.div`
   background-color: #fff;
@@ -13,7 +14,18 @@ const DesignButton = styled.button`
   color: #fff;
 `;
 
-const ToggleButton = <DesignButton>outSideBtton</DesignButton>;
+const ToggleButton = <DesignButton>outSideButton</DesignButton>;
+
+interface Props {
+  click: () => {};
+}
+
+class ToggleButton2 extends React.Component<Props> {
+  render() {
+    const { click } = this.props;
+    return <DesignButton onClick={click}>outSideButton</DesignButton>;
+  }
+}
 
 const App = () => {
   return (
@@ -40,6 +52,15 @@ const App = () => {
           </ul>
         </List>
       </Toggle2>
+      <p>sample3</p>
+      <Toggle3 toggle_element={func => <ToggleButton2 click={func} />}>
+        <List>
+          <ul>
+            <li>aaa</li>
+            <li>iii</li>
+          </ul>
+        </List>
+      </Toggle3>
     </>
   );
 };
