@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Toggle } from "./Toggle";
 import { Toggle2 } from "./Toggle2";
 import { Toggle3 } from "./Toggle3";
-
+import { Toggle4 } from "./Toggle4";
 const List = styled.div`
   background-color: #fff;
 `;
@@ -61,6 +61,15 @@ const App = () => {
           </ul>
         </List>
       </Toggle3>
+      <p>sample4</p>
+      <Toggle4 toggle_element={func => <ToggleButton2 click={func} />}>
+        <List>
+          <ul>
+            <li>aaa</li>
+            <li>iii</li>
+          </ul>
+        </List>
+      </Toggle4>
     </>
   );
 };
