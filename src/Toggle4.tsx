@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useKeyPress } from "./Hook";
+import { useKeyPress, useEventListener } from "./Hook";
 
 const Overlay = styled.div`
   position: fixed;
@@ -27,16 +27,27 @@ export const Toggle4: React.FunctionComponent<Props2> = ({
   children
 }) => {
   const [is_open, set_open] = React.useState(false);
-  const press_escape = useKeyPress("Escape");
 
   const toggle_button = () => {
     set_open(!is_open);
   };
 
+  const handler = React.useCallback(
+    (event: KeyboardEvent) => {
+      if (event.key === "Esc" || event.key === "Escape") {
+        set_open(false);
+      }
+    },
+    [set_open]
+  );
+
+  // Add event listener using our hook
+  useEventListener("keydown", handler);
+
   return (
     <>
       {toggle_element(toggle_button)}
-      {press_escape && (
+      {is_open && (
         <>
           <Overlay onClick={toggle_button} />
           <DropMenu className="open">{children}</DropMenu>
