@@ -23,7 +23,17 @@ interface Props {
 class ToggleButton2 extends React.Component<Props> {
   render() {
     const { click } = this.props;
-    return <DesignButton onClick={click}>outSideButton</DesignButton>;
+    return (
+      <>
+        <button
+          type="button"
+          className="c-button c-button--sm c-button--primary"
+          onClick={click}
+        >
+          &nbsp; "リクエストを新規作成"&nbsp;
+        </button>
+      </>
+    );
   }
 }
 

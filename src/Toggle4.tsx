@@ -18,7 +18,7 @@ const DropMenu = styled.div`
 `;
 
 interface Props2 {
-  toggle_element: React.Component;
+  toggle_element: (func: () => void) => {};
   children: React.ReactNode;
 }
 
